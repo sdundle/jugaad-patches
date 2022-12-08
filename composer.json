@@ -1,5 +1,18 @@
 {
+    "name": "sagar/jugaad_patches",
+    "description": "Jugaad Patches composer file",
+    "type": "project",
     "require": {
         "endroid/qr-code": "^4.6"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sagar\\JugaadPatches\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sagar Dundle"
+        }
+    ]
 }
