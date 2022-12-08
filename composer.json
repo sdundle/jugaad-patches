@@ -1,7 +1,7 @@
 {
     "name": "sagardundle/jugaad_patches",
     "description": "Jugaad Patches composer file",
-    "type": "project",
+    "type": "library",
     "require": {
         "endroid/qr-code": "^4.6"
     },
