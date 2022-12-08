@@ -1,5 +1,5 @@
 {
-    "name": "sagar/jugaad_patches",
+    "name": "sagardundle/jugaad_patches",
     "description": "Jugaad Patches composer file",
     "type": "project",
     "require": {
@@ -12,7 +12,7 @@
     },
     "authors": [
         {
-            "name": "SagarDundle"
+            "name": "Sagar Dundle"
         }
     ]
 }
