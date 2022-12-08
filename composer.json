@@ -6,6 +6,7 @@
     "require": {
         "endroid/qr-code": "^4.6"
     },
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Sagar\\JugaadPatches\\": "src/"
