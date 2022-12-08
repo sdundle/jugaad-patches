@@ -1,0 +1,14 @@
+global-styling:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+
+global-scripts:
+  js: 
+    js/bootstrap.min.js: {}   
+
+
+jugaad_patches.custom_script:
+  css:
+    base:
+      css/jugaad_patches.css: {}

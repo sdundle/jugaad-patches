@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Contains all the required hooks.
+ */
+
+use Drupal\user\Entity\User;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function jugaad_patches_theme($existing, $type, $theme, $path) {
+
+  return [
+    'block__jugaad_patches' => [
+      'template' => 'block--jugaad-patches',
+      'path' => $path . '/templates',
+      'base hook' => 'block',
+    ],
+    'page__product' => [
+      'template' => 'page--product',
+      'path' => $path . '/templates',
+      'base hook' => 'block',
+    ],
+    'node__product' => [
+      'template' => 'node--product',
+      'path' => $path . '/templates',
+      'base hook' => 'node',
+    ],
+    'apppurchaseblock' => [
+      'variables' => [
+        'qrCodeLink' => '',
+        'qrCodeTitle' => '',
+      ],
+    ],
+  ];
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function jugaad_patches_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    if ($node->getType() == 'product') {
+      $suggestions[] = 'page__product';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function jugaad_patches_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    if ($node->getType() == 'product') {
+      $suggestions[] = 'node__product';
+    }
+  }
+}
+

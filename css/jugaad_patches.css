@@ -1,0 +1,48 @@
+.sidebar .block {
+  background-color: unset !important;
+}
+.sidebar h2 {
+  border-bottom: unset !important;
+}
+fieldset {
+  border: 1px solid #000;
+}
+.layout-two-sidebars .main-content {
+  border-right-style: dotted;
+}
+.sidebar .block {
+  border-color: #000 !important;
+  border-width: 2px !important;
+}
+.center {
+  text-align: center;
+}
+.custom-margin {
+  padding: 18px;
+  border: 2px solid;
+}
+#block-jugaad-patches {
+  margin-bottom: 0;
+}
+/* #block-jugaad-patches img{
+  width: 100%;
+} */
+#block-jugaad-patches h5 {
+  margin-bottom: 0;
+}
+
+@media (min-width: 767px) {
+  .custom-margin {
+    margin-top: 38px;
+  }
+  .dotted-line {
+    border-right: 3px dotted;
+  }
+}
+@media (min-width: 851px) {
+  .layout-two-sidebars .main-content {
+    width: 67% !important;
+    margin-right: 28% !important;
+    margin-left: 4% !important;
+}
+}

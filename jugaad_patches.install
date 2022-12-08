@@ -1,0 +1,110 @@
+<?php
+
+
+/**
+ * @file
+ * Contains install and uninstall hooks.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function jugaad_patches_install() {
+  $fileDataFirst = file_get_contents(__DIR__ . '/images/horse.jpg');
+  $fileFirst = file_save_data($fileDataFirst, 'public://horse.jpg');
+  $fileDataSecond = file_get_contents(__DIR__ . '/images/product-2.png');
+  $fileSecond = file_save_data($fileDataSecond, 'public://product-2.png');
+
+  $data = [
+    0 =>
+      [
+        'type' => 'product',
+        'title' => 'Unicorn Iron on Patch',
+        'body' =>
+          [
+            'value' => '<p>Size is approx 3-3/8" x 4" (8 5cm x 10 16cm) </p><p>High quality, detailed embroidery applique Con be sewn or ironed on. Great for hats, bags, clothing, and morel <br/>Or you could also just stick it to your forehead </p>',
+            'format' => 'full_html',
+          ],
+        'field_link' =>
+          [
+            'uri' => 'https://www.flipkart.com',
+            'title' => 'Visit Flipkart',
+          ],
+        'field_image' =>
+          [
+            'target_id' => $fileFirst->id(),
+            'alt'       => 'Horse',
+            'title'     => 'Horse',
+          ],
+        'uid' => 1,
+      ],
+    1 =>
+      [
+        'type' => 'product',
+        'title' => 'My new title 2',
+        'body' =>
+          [
+            'value' => 'My new title 2 body.',
+            'format' => 'full_html',
+          ],
+        'field_link' =>
+          [
+            'uri' => 'https://www.yahoo.com',
+            'title' => 'Visit yahoo',
+          ],
+        'field_image' =>
+          [
+            'target_id' => $fileSecond->id(),
+            'alt'       => 'Product 2',
+            'title'     => 'Product 2',
+          ],
+        'uid' => 1,
+      ],
+  ];
+
+  // Add content.
+  foreach ($data as $value) {
+    $node = Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->create($value);
+    $node->save();
+  }
+
+  // Place the block to the sidebar region.
+  $block = \Drupal::entityTypeManager()->getStorage('block')->create([
+    'id' => 'jugaad_patches',
+    'plugin' => 'jugaad_patches_block',
+    'region' => 'sidebar',
+    'provider' => 'block_content',
+    'weight' => -100,
+    'theme' => \Drupal::config('system.theme')->get('default'),
+    'settings' => [
+      'id' => 'jugaad_patches_block',
+      'label_display' => 'visually_hidden',
+    ],
+  ]);
+  $block->save();
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function jugaad_patches_uninstall() {
+
+  // Delete content type product created.
+  $content_type = \Drupal::entityTypeManager()->getStorage('node_type')->load('product');
+  $content_type->delete();
+
+  // Delete the content created.
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'product')
+    ->execute();
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+  $entities = $storage_handler->loadMultiple($nids);
+  $storage_handler->delete($entities);
+
+  // Remove the configuration.
+  \Drupal::configFactory()->getEditable('block.block.jugaad_patches')->delete();
+
+}

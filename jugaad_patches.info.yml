@@ -1,0 +1,10 @@
+name: Jugaad Patches
+description: Module for generating QR code from link
+core_version_requirement: ^8 || ^9
+package: Custom
+type: module
+libraries:
+  - jugaad_patches/global-styling
+  - jugaad_patches/global-scripts
+dependencies:
+  - drupal:node
