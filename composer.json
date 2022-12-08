@@ -3,10 +3,10 @@
     "description": "Jugaad Patches composer file",
     "type": "library",
     "license": "GPL-2.0-or-later",
+    "minimum-stability": "stable",
     "require": {
         "endroid/qr-code": "^4.6"
     },
-    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "Sagar\\JugaadPatches\\": "src/"
