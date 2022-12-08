@@ -2,6 +2,7 @@
     "name": "sagardundle/jugaad_patches",
     "description": "Jugaad Patches composer file",
     "type": "library",
+    "license": "GPL-2.0-or-later",
     "require": {
         "endroid/qr-code": "^4.6"
     },
