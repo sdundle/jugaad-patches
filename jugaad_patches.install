@@ -70,6 +70,9 @@ function jugaad_patches_install() {
     $node->save();
   }
 
+  // Clear the Drupal cache to make the block visible.
+  \Drupal::service('cache.render')->invalidateAll();
+
   // Place the block to the sidebar region.
   $block = \Drupal::entityTypeManager()->getStorage('block')->create([
     'id' => 'jugaad_patches',
