@@ -1,1 +1,6 @@
-<img src="{{ file_url(qrCodeLink) }}" title="{{ qrCodeTitle }}" />
+{% if (qrCodeLink is not empty) and (qrCodeTitle is not empty) %}
+    <img src="{{ file_url(qrCodeLink) }}" title="{{ qrCodeTitle }}" />
+{% else %}
+    <h3>{{ 'QR code will be visible only on product node pages.'|t }}</h3>
+{% endif %}
+

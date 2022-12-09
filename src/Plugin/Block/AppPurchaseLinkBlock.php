@@ -95,16 +95,17 @@ class AppPurchaseLinkBlock extends BlockBase implements ContainerFactoryPluginIn
         $nodeObject = $this->entityTypeManager->getStorage('node')->load($nid);
         $qrCodeLink = $nodeObject->get('field_link')[0]->get('uri')->getValue();
         $qrCodeTitle = $nodeObject->get('field_link')[0]->get('title')->getValue();
+        
+        // Generate the QR code.
+        $qrCode = new QrCode($qrCodeLink);
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+        $path = $this->fileSystem->realpath($this->config->get('system.file')->get('default_scheme') . "://");
+        $qrCodeName = $nid . '.png';
+        imagepng($result->getImage(), $path . '/' . $qrCodeName);
       }
     }
-
-    // Generate the QR code.
-    $qrCode = new QrCode($qrCodeLink);
-    $writer = new PngWriter();
-    $result = $writer->write($qrCode);
-    $path = $this->fileSystem->realpath($this->config->get('system.file')->get('default_scheme') . "://");
-    $qrCodeName = $nid . '.png';
-    imagepng($result->getImage(), $path . '/' . $qrCodeName);
+    
 
     return [
       '#theme' => 'apppurchaseblock',
