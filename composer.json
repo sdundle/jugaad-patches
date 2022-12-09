@@ -1,7 +1,7 @@
 {
     "name": "sagardundle/jugaad_patches",
     "description": "Jugaad Patches composer file",
-    "type": "library",
+    "type": "drupal-module",
     "license": "GPL-2.0-or-later",
     "minimum-stability": "stable",
     "require": {
