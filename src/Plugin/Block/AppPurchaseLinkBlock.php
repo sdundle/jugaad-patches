@@ -138,4 +138,11 @@ class AppPurchaseLinkBlock extends BlockBase implements ContainerFactoryPluginIn
     $this->configuration['my_block_settings'] = $form_state->getValue('my_block_settings');
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    return 0;
+  }
+
 }
